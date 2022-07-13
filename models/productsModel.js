@@ -1,4 +1,3 @@
-// Busca informações no banco de dados
 const db = require('./db');
 
 const productModel = {

@@ -1,4 +1,3 @@
-// validaçoes
 const Joi = require('joi');
 const productsModel = require('../models/productsModel');
 const { runSchema, throwNotFoundError } = require('./utils');
