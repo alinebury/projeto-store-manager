@@ -9,4 +9,7 @@ productsRouter.get('/:id', productsController.getId);
 // list products
 productsRouter.get('/', productsController.get);
 
+// add products
+productsRouter.post('/', productsController.add);
+
 module.exports = productsRouter;

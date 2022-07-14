@@ -19,12 +19,17 @@
     "containerId": "",
     "name": "localhost:3000/products/",
     "url": "localhost:3000/products/",
-    "method": "GET",
+    "method": "POST",
     "sortNum": 0,
     "created": "2022-07-11T15:37:18.756Z",
-    "modified": "2022-07-12T19:29:02.490Z",
+    "modified": "2022-07-14T18:46:36.228Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"name\": \"debug\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
