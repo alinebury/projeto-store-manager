@@ -1,15 +1,7 @@
-const Joi = require('joi');
 const productsModel = require('../models/productsModel');
-const { runSchema, throwNotFoundError } = require('./utils');
+const { throwNotFoundError } = require('./utils');
 
 const productsService = {
-  validateParamsId: runSchema(Joi.object({
-    id: Joi.number().required().positive().integer(),
-  })),
-  validateBodyAdd: runSchema(Joi.object({
-    name: Joi.string().required().max(100),
-  })),
-
   async get() {
     const products = await productsModel.get();
 

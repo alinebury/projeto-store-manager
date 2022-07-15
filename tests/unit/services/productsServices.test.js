@@ -6,7 +6,6 @@ chai.use(chaiAsPromised);
 
 const productsModel = require('../../../models/productsModel');
 const productsService = require('../../../services/productsService');
-const db = require('../../../models/db');
 
 describe('Services', () => {
   beforeEach(sinon.restore);
