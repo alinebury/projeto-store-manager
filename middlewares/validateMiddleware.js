@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const {
   throwBadRequestError, throwUnprocessableEntity, throwNotFoundError,
-} = require('../services/utils');
+} = require('./utils');
 
 const validateBodyAdd = (req, res, next) => {
   const schema = Joi.object({

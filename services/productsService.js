@@ -1,5 +1,5 @@
 const productsModel = require('../models/productsModel');
-const { throwNotFoundError } = require('./utils');
+const { throwNotFoundError } = require('../middlewares/utils');
 
 const productsService = {
   async get() {

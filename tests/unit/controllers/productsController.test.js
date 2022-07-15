@@ -26,47 +26,23 @@ describe('Services', () => {
   });
 
   describe('getId', () => {
-    it('Erro caso validateParamsId também retorne um erro', () => {
-      sinon.stub(productsService, 'validateParamsId').rejects();
-      chai.expect(productsController.getId({}, {})).to.be.eventually.rejected;
-    });
     it('Erro caso checkExists também retorne um erro', () => {
-      sinon.stub(productsService, 'validateParamsId').resolves({});
       sinon.stub(productsService, 'checkExists').rejects();
       chai.expect(productsController.getId({},{})).to.be.eventually.be.rejected;
     });
 
     it('Erro caso service.getId também retorne um erro', () => {
-      sinon.stub(productsService, 'validateParamsId').resolves({});
       sinon.stub(productsService, 'checkExists').resolves();
       sinon.stub(productsService, 'getId').rejects
       chai.expect(productsController.getId({}, {})).to.be.eventually.be.rejected;
     });
 
     it('Retorno com sucesso', async () => {
-      sinon.stub(productsService, 'validateParamsId').resolves({});
       sinon.stub(productsService, 'checkExists').resolves();
       sinon.stub(productsService, 'getId').resolves({ id: 1 });
       const res = makeRes();
-      await productsController.getId({}, res);
+      await productsController.getId({ params: { id: 1 } }, res);
       chai.expect(res.json.getCall(0).args[0]).to.deep.equal({ id: 1 });
     });
   });
-
-//   describe('checkExists', () => {
-//     it('Retorno Erro', () => {
-//       sinon.stub(productsService, 'exists').rejects();
-//       chai.expect(productsController.checkExists(1)).to.eventually.be.rejected;
-//     });
-
-//     it('Retorno TRUE', () => {
-//       sinon.stub(productsService, 'exists').resolves([[]]);
-//       chai.expect(productsController.checkExists(1)).to.eventually.be.undefined;
-//     });
-
-//     it('Retorno FALSE', () => {
-//       sinon.stub(productsService, 'exists').resolves([[{}]]);
-//       chai.expect(productsController.checkExists(1)).to.eventually.deep.equal({});
-//     });
-//   });
 });
