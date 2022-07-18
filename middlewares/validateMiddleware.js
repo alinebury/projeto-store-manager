@@ -32,7 +32,27 @@ const validateParamsId = (req, res, next) => {
   next();
 };
 
+const validateBodyAddSales = (req, res, next) => {
+  const schema = Joi.object({
+      productId: Joi.number().required().positive(),
+      quantity: Joi.number().min(1).required(),
+  });
+  req.body.forEach((item) => {
+    const { error } = schema.validate(item);
+    if (error) {
+      switch (error.details[0].type) {
+        case 'any.required': throwBadRequestError(error.message); break;
+        case 'number.positive': throwUnprocessableEntity(error.message); break;
+        case 'number.min': throwUnprocessableEntity(error.message); break;
+        default: throw new Error();
+      }
+    }
+  });
+  next();
+};
+
 module.exports = {
   validateBodyAdd,
   validateParamsId,
+  validateBodyAddSales,
 };

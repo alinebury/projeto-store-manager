@@ -14,9 +14,8 @@ const productModel = {
   },
 
   async exists(id) {
-    const sql = `SELECT * FROM StoreManager.products WHERE id = ${id}`;
-    const retorno = await db.query(sql);
-    const [[item]] = retorno;
+    const sql = `SELECT * FROM StoreManager.products WHERE id = ${id}`; 
+    const [[item]] = await db.query(sql);
     return !!item;
   },
 
