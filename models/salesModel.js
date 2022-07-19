@@ -12,6 +12,46 @@ const salesModel = {
     await db.query(sql);
     return { id: insertId, itemsSold: data };
   },
+
+  async getSales() {
+    const sql = `
+    SELECT
+        sales_products.sale_id AS saleId,
+        sales_products.product_id AS productId,
+        sales_products.quantity AS quantity,
+        sales.date AS date
+    FROM
+      StoreManager.sales_products AS sales_products
+    INNER JOIN
+      StoreManager.sales AS sales ON sales.id = sales_products.sale_id
+    ORDER BY sales_products.sale_id, sales_products.product_id;`;
+
+    const [item] = await db.query(sql);
+    return item;
+  },
+
+  async checkExists(id) {
+    const sql = `SELECT * FROM StoreManager.sales WHERE id = ${id}`;
+    const [[item]] = await db.query(sql);
+    return !!item;
+  },
+
+  async getSaleId(id) {
+    const sql = `
+    SELECT
+      sales_products.product_id AS productId,
+      sales_products.quantity AS quantity,
+      sales.date AS date
+    FROM
+      StoreManager.sales_products AS sales_products
+    INNER JOIN
+      StoreManager.sales AS sales ON sales.id = sales_products.sale_id
+    WHERE sales.id = ${id}
+    ORDER BY sales_products.sale_id, sales_products.product_id`;
+
+    const [item] = await db.query(sql);
+    return item;
+  },
 };
 
 module.exports = salesModel;

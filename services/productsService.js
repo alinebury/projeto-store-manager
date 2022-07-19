@@ -4,7 +4,6 @@ const { throwNotFoundError } = require('../middlewares/utils');
 const productsService = {
   async get() {
     const products = await productsModel.get();
-
     return products;
   },
 

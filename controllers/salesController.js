@@ -9,6 +9,18 @@ const salesController = {
     const result = await salesService.addSales(body);
     res.status(HTTP.CREATED).json(result);
   },
+
+  async getSales(req, res) {
+    const sales = await salesService.getSales();
+    res.status(HTTP.OK).json(sales);
+  },
+
+  async getSaleId(req, res) {
+    const { id } = req.params;
+    await salesService.checkExists(id);
+    const sale = await salesService.getSaleId(id);
+    res.status(HTTP.OK).json(sale);
+  },
 };
 
 module.exports = salesController;
