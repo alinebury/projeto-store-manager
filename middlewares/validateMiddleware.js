@@ -3,7 +3,7 @@ const {
   throwBadRequestError, throwUnprocessableEntity, throwNotFoundError,
 } = require('./utils');
 
-const validateBodyAdd = (req, res, next) => {
+const validateBody = (req, res, next) => {
   const schema = Joi.object({
   name: Joi.string().required().min(5),
   });
@@ -52,7 +52,7 @@ const validateBodyAddSales = (req, res, next) => {
 };
 
 module.exports = {
-  validateBodyAdd,
+  validateBody,
   validateParamsId,
   validateBodyAddSales,
 };

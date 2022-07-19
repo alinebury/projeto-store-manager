@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const productsController = require('../controllers/productsController');
-const { validateBodyAdd, validateParamsId } = require('../middlewares/validateMiddleware');
+const { validateBody, validateParamsId } = require('../middlewares/validateMiddleware');
 
 const productsRouter = Router();
 
@@ -11,6 +11,9 @@ productsRouter.get('/:id', validateParamsId, productsController.getId);
 productsRouter.get('/', productsController.get);
 
 // add products
-productsRouter.post('/', validateBodyAdd, productsController.add);
+productsRouter.post('/', validateBody, productsController.add);
+
+// edit products
+productsRouter.put('/:id', validateBody, productsController.edit);
 
 module.exports = productsRouter;
