@@ -39,18 +39,23 @@ const salesModel = {
   async getSaleId(id) {
     const sql = `
     SELECT
-      sales_products.product_id AS productId,
-      sales_products.quantity AS quantity,
-      sales.date AS date
+      sp.product_id AS productId,
+      sp.quantity AS quantity,
+      s.date AS date
     FROM
-      StoreManager.sales_products AS sales_products
+      StoreManager.sales_products AS sp
     INNER JOIN
-      StoreManager.sales AS sales ON sales.id = sales_products.sale_id
-    WHERE sales.id = ${id}
-    ORDER BY sales_products.sale_id, sales_products.product_id`;
+      StoreManager.sales AS s ON s.id = sp.sale_id
+    WHERE sp.sale_id = ${id}
+    ORDER BY sp.sale_id, sp.product_id`;
 
     const [item] = await db.query(sql);
     return item;
+  },
+
+  async deleteSale(id) {
+    const sql = `DELETE FROM StoreManager.sales WHERE id = ${id}`;
+    await db.query(sql);
   },
 };
 

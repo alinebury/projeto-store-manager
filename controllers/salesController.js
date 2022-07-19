@@ -15,11 +15,17 @@ const salesController = {
     res.status(HTTP.OK).json(sales);
   },
 
-  async getSaleId(req, res) {
-    const { id } = req.params;
+  async getSaleId({ params }, res) {
+    const { id } = params;
     await salesService.checkExists(id);
     const sale = await salesService.getSaleId(id);
     res.status(HTTP.OK).json(sale);
+  },
+
+  async deleteSale({ params: { id } }, res) {
+    await salesService.checkExists(id);
+    await salesService.deleteSale(id);
+    res.status(HTTP.NO_CONTENT).json();
   },
 };
 
