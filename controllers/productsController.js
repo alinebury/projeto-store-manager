@@ -7,11 +7,10 @@ const productsController = {
     res.json(products);
   },
 
-  async getId(req, res) {
-    const { id } = req.params;
+  async getId({ params: { id } }, res) {
     await productsService.checkExists(id);
     const product = await productsService.getId(id);
-    res.json(product);
+    res.status(HTTP.OK).json(product);
   },
 
   async add({ body }, res) {
@@ -19,9 +18,7 @@ const productsController = {
     res.status(HTTP.CREATED).json(id);
   },
 
-  async edit({ body, params }, res) {
-    const { id } = params;
-    const { name } = body;
+  async edit({ body: { name }, params: { id } }, res) {
     await productsService.checkExists(id);
     await productsService.edit(name, id);
     res.status(HTTP.OK).json({ id, name });
@@ -31,6 +28,11 @@ const productsController = {
     await productsService.checkExists(id);
     await productsService.delete(id);
     res.status(HTTP.NO_CONTENT).json();
+  },
+
+  async search({ query: { q } }, res) {
+    const query = await productsService.search(q);
+    res.status(HTTP.OK).json(query);
   },
 };
 

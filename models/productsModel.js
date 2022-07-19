@@ -34,6 +34,13 @@ const productModel = {
     const sql = `DELETE FROM StoreManager.products WHERE id = ${id}`;
     await db.query(sql);
   },
+
+  async search(q) {
+    const sql = `SELECT * FROM StoreManager.products WHERE name LIKE '${q}%'`;
+    const [item] = await db.query(sql);
+    console.log(item);
+    return item;
+  },
 };
 
 module.exports = productModel;

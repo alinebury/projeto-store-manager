@@ -4,6 +4,9 @@ const { validateBody, validateParamsId } = require('../middlewares/validateMiddl
 
 const productsRouter = Router();
 
+// search products
+productsRouter.get('/search', productsController.search);
+
 // list product id
 productsRouter.get('/:id', validateParamsId, productsController.getId);
 
