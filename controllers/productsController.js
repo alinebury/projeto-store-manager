@@ -22,11 +22,15 @@ const productsController = {
   async edit({ body, params }, res) {
     const { id } = params;
     const { name } = body;
-    console.log(name);
     await productsService.checkExists(id);
     await productsService.edit(name, id);
-
     res.status(HTTP.OK).json({ id, name });
+  },
+
+  async delete({ params: { id } }, res) {
+    await productsService.checkExists(id);
+    await productsService.delete(id);
+    res.status(HTTP.NO_CONTENT).json();
   },
 };
 

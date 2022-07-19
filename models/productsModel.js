@@ -27,9 +27,12 @@ const productModel = {
 
   async edit(data, id) {
     const sql = `UPDATE StoreManager.products SET name = "${data}" WHERE id = ${id}`;
-    const items = await db.query(sql);
-    console.log(items);
-    return items;
+    await db.query(sql);
+  },
+
+  async delete(id) {
+    const sql = `DELETE FROM StoreManager.products WHERE id = ${id}`;
+    await db.query(sql);
   },
 };
 

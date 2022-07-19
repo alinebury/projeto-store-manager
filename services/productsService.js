@@ -23,8 +23,11 @@ const productsService = {
   },
 
   async edit(data, id) {
-    const product = await productsModel.edit(data, id);
-    return product;
+    await productsModel.edit(data, id);
+  },
+
+  async delete(id) {
+    await productsModel.delete(id);
   },
 };
 
