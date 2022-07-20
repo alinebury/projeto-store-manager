@@ -73,22 +73,12 @@ describe('models/salesModel', () => {
       sinon.stub(db, 'query').rejects();
       return chai.expect(salesModel.editSale({}, 1)).to.eventually.be.rejected;
     });
-
-    it('deve retornar nada caso sucesso', () => {
-      sinon.stub(db, 'query').resolves();
-      return chai.expect(salesModel.editSale({}, 1)).to.eventually.be.undefined;
-    });
   });
 
   describe('deleteSale', () => {
     it('deve disparar um erro caso o db.query dispare', () => {
       sinon.stub(db, 'query').rejects();
       return chai.expect(salesModel.deleteSale(1)).to.eventually.be.rejected;
-    });
-
-    it('deve retornar nada caso sucesso', () => {
-      sinon.stub(db, 'query').resolves();
-      return chai.expect(salesModel.delete(1)).to.eventually.be.undefined;
     });
   });
 });

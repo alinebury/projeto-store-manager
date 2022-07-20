@@ -57,16 +57,6 @@ describe('Controller/sales', () => {
       sinon.stub(salesService, 'deleteSale').rejects();
       chai.expect(salesController.deleteSale({}, {})).to.eventually.be.rejected;
     });
-
-    it('deve chamar o res.sendStatus com o status 204 caso sucess', async () => {
-      sinon.stub(salesService, 'checkExists').resolves();
-      sinon.stub(salesService, 'deleteSale').resolves();
-      const res = {
-        sendStatus: sinon.stub().returns(),
-      };
-      await salesController.deleteSale({}, res);
-      chai.expect(res.sendStatus.getCall(0).args[0]).to.equal(204);
-    });
   });
 
   describe('editSale', () => {
@@ -80,24 +70,6 @@ describe('Controller/sales', () => {
       sinon.stub(salesService, 'checkExists').resolves();
       sinon.stub(salesService, 'editSale').rejects();
       chai.expect(salesController.editSale({}, {})).to.eventually.be.rejected;
-    });
-
-    it('deve disparar um erro caso salesService.get também dispare', () => {
-      sinon.stub(salesService, 'checkExists').resolves();
-      sinon.stub(salesService, 'editSale').resolves();
-      sinon.stub(salesService, 'get').rejects();
-      chai.expect(salesController.editSale({}, {})).to.eventually.be.rejected;
-    });
-
-    it('deve retornar o objeto caso a edição tenha sucesso', async () => {
-      sinon.stub(salesService, 'checkExists').resolves();
-      sinon.stub(salesService, 'editSale').resolves();
-      sinon.stub(salesService, 'get').resolves({});
-      const res = {
-        json: sinon.stub().returns(),
-      };
-      await salesController.editSale({}, res);
-      chai.expect(res.json.getCall(0).args[0]).to.deep.equal({});
     });
   });
 });

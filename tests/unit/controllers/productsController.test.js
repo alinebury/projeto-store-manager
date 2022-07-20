@@ -57,16 +57,6 @@ describe('Controller/products', () => {
       sinon.stub(productsService, 'delete').rejects();
       chai.expect(productsController.delete({}, {})).to.eventually.be.rejected;
     });
-
-    it('deve chamar o res.sendStatus com o status 204 caso sucess', async () => {
-      sinon.stub(productsService, 'checkExists').resolves();
-      sinon.stub(productsService, 'delete').resolves();
-      const res = {
-        sendStatus: sinon.stub().returns(),
-      };
-      await productsController.delete({}, res);
-      chai.expect(res.sendStatus.getCall(0).args[0]).to.equal(204);
-    });
   });
 
   describe('edit', () => {
@@ -87,17 +77,6 @@ describe('Controller/products', () => {
       sinon.stub(productsService, 'edit').resolves();
       sinon.stub(productsService, 'get').rejects();
       chai.expect(productsController.edit({}, {})).to.eventually.be.rejected;
-    });
-
-    it('deve retornar o objeto caso a edição tenha sucesso', async () => {
-      sinon.stub(productsService, 'checkExists').resolves();
-      sinon.stub(productsService, 'edit').resolves();
-      sinon.stub(productsService, 'get').resolves({});
-      const res = {
-        json: sinon.stub().returns(),
-      };
-      await productsController.edit({}, res);
-      chai.expect(res.json.getCall(0).args[0]).to.deep.equal({});
     });
   });
 });
