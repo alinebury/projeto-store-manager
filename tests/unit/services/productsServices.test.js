@@ -7,7 +7,7 @@ chai.use(chaiAsPromised);
 const productsModel = require('../../../models/productsModel');
 const productsService = require('../../../services/productsService');
 
-describe('Services', () => {
+describe('Services/products', () => {
   beforeEach(sinon.restore);
 
   describe('get', () => {
@@ -52,6 +52,30 @@ describe('Services', () => {
     it('Retorno FALSE', () => {
       sinon.stub(productsModel, 'exists').resolves([[{}]]);
       chai.expect(productsService.checkExists(1)).to.eventually.deep.equal({});
+    });
+  });
+
+  describe('delete', () => {
+    it('deve disparar um erro caso productsModel.delete dispare um erro', () => {
+      sinon.stub(productsModel, 'delete').rejects();
+      chai.expect(productsService.delete(1)).to.eventually.be.rejected;
+    });
+
+    it('deve retornar caso o productsModel.delete remova a serie', () => {
+      sinon.stub(productsModel, 'delete').resolves();
+      chai.expect(productsService.delete(1)).to.eventually.be.undefined;
+    });
+  });
+
+  describe('edit', () => {
+    it('deve disparar um erro caso productsModel.edit dispare um erro', () => {
+      sinon.stub(productsModel, 'edit').rejects();
+      chai.expect(productsService.edit(1, {})).to.eventually.be.rejected;
+    });
+
+    it('deve retornar caso o productsModel.edit altere a serie', () => {
+      sinon.stub(productsModel, 'edit').resolves();
+      chai.expect(productsService.edit(1, {})).to.eventually.be.undefined;
     });
   });
 });

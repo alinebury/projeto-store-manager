@@ -8,7 +8,7 @@ const productsService = require('../../../services/productsService');
 const productsController = require('../../../controllers/productsController');
 const { makeRes } = require('./utils');
 
-describe('Services', () => {
+describe('Controller/products', () => {
   beforeEach(sinon.restore);
 
   describe('get', () => {
@@ -43,6 +43,61 @@ describe('Services', () => {
       const res = makeRes();
       await productsController.getId({ params: { id: 1 } }, res);
       chai.expect(res.json.getCall(0).args[0]).to.deep.equal({ id: 1 });
+    });
+  });
+
+  describe('delete', () => {
+    it('deve disparar um erro caso productsService.checkExists também dispare', () => {
+      sinon.stub(productsService, 'checkExists').rejects();
+      chai.expect(productsController.delete({}, {})).to.eventually.be.rejected;
+    });
+
+    it('deve disparar um erro caso productsService.delete também dispare', () => {
+      sinon.stub(productsService, 'checkExists').resolves();
+      sinon.stub(productsService, 'delete').rejects();
+      chai.expect(productsController.delete({}, {})).to.eventually.be.rejected;
+    });
+
+    it('deve chamar o res.sendStatus com o status 204 caso sucess', async () => {
+      sinon.stub(productsService, 'checkExists').resolves();
+      sinon.stub(productsService, 'delete').resolves();
+      const res = {
+        sendStatus: sinon.stub().returns(),
+      };
+      await productsController.delete({}, res);
+      chai.expect(res.sendStatus.getCall(0).args[0]).to.equal(204);
+    });
+  });
+
+  describe('edit', () => {
+    it('deve disparar um erro caso productsService.checkExists também dispare', () => {
+      sinon.stub(productsService, 'checkExists').rejects();
+      chai.expect(productsController.edit({}, {})).to.eventually.be.rejected;
+    });
+
+    it('deve disparar um erro caso productsService.checkExists também dispare', () => {
+
+      sinon.stub(productsService, 'checkExists').resolves();
+      sinon.stub(productsService, 'edit').rejects();
+      chai.expect(productsController.edit({}, {})).to.eventually.be.rejected;
+    });
+
+    it('deve disparar um erro caso productsService.get também dispare', () => {
+      sinon.stub(productsService, 'checkExists').resolves();
+      sinon.stub(productsService, 'edit').resolves();
+      sinon.stub(productsService, 'get').rejects();
+      chai.expect(productsController.edit({}, {})).to.eventually.be.rejected;
+    });
+
+    it('deve retornar o objeto caso a edição tenha sucesso', async () => {
+      sinon.stub(productsService, 'checkExists').resolves();
+      sinon.stub(productsService, 'edit').resolves();
+      sinon.stub(productsService, 'get').resolves({});
+      const res = {
+        json: sinon.stub().returns(),
+      };
+      await productsController.edit({}, res);
+      chai.expect(res.json.getCall(0).args[0]).to.deep.equal({});
     });
   });
 });
