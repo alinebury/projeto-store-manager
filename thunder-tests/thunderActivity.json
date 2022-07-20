@@ -51,13 +51,78 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/sales",
-    "url": "localhost:3000/sales/2",
-    "method": "GET",
+    "url": "localhost:3000/sales/1",
+    "method": "PUT",
     "sortNum": 0,
     "created": "2022-07-18T15:41:53.208Z",
-    "modified": "2022-07-19T19:43:02.787Z",
+    "modified": "2022-07-20T00:10:14.241Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  [\n    {\n      \"productId\": 1,\n      \"quantity\":10\n    },\n    {\n      \"productId\": 2,\n      \"quantity\":50\n    }\n  ]",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b7274ef9-e4fc-4523-b87e-57b3913f0ac9",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/search?q=Martelo",
+    "url": "localhost:3000/products/search?q=Martelo",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-19T22:26:00.228Z",
+    "modified": "2022-07-19T22:27:08.367Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Martelo",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "e64f54d0-5c77-446b-a8e7-11470f43f6ce",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/search?q=",
+    "url": "localhost:3000/products/search?q=",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-19T22:28:13.818Z",
+    "modified": "2022-07-19T22:33:01.365Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "94d7b774-d91e-47c3-9b19-2c32f8e56c2c",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/search?q=Traje",
+    "url": "localhost:3000/products/search?q=Traje",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-19T22:29:55.533Z",
+    "modified": "2022-07-19T22:30:28.280Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Traje",
+        "isPath": false
+      }
+    ],
     "tests": []
   }
 ]

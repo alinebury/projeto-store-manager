@@ -57,6 +57,18 @@ const salesModel = {
     const sql = `DELETE FROM StoreManager.sales WHERE id = ${id}`;
     await db.query(sql);
   },
+
+  async editSale(data, id) {
+    const values = data
+      .map((item) => `WHEN product_id = ${item.productId} THEN ${item.quantity}`).join(' ');
+    const sql = `UPDATE StoreManager.sales_products
+    SET quantity = CASE
+      ${values}
+    END
+    WHERE sale_id = ${id};`;
+    await db.query(sql);
+    return { saleId: id, itemsUpdated: data };
+  },
 };
 
 module.exports = salesModel;

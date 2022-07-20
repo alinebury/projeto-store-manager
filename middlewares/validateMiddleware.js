@@ -32,7 +32,7 @@ const validateParamsId = (req, res, next) => {
   next();
 };
 
-const validateBodyAddSales = (req, res, next) => {
+const validateBodySales = (req, res, next) => {
   const schema = Joi.object({
       productId: Joi.number().required().positive(),
       quantity: Joi.number().min(1).required(),
@@ -54,5 +54,5 @@ const validateBodyAddSales = (req, res, next) => {
 module.exports = {
   validateBody,
   validateParamsId,
-  validateBodyAddSales,
+  validateBodySales,
 };

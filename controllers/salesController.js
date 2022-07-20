@@ -27,6 +27,14 @@ const salesController = {
     await salesService.deleteSale(id);
     res.status(HTTP.NO_CONTENT).json();
   },
+
+  async editSale({ body, params: { id } }, res) {
+    await salesService.checkExists(id);
+    await Promise.all(body
+      .map((item) => productsService.checkExists(item.productId)));
+    const sale = await salesService.editSale(body, id);
+    res.status(HTTP.OK).json(sale);
+  },
 };
 
 module.exports = salesController;

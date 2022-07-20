@@ -25,6 +25,11 @@ const salesService = {
   async deleteSale(id) {
     await salesModel.deleteSale(id);
   },
+
+  async editSale(data, id) {
+    const sale = await salesModel.editSale(data, id);
+    return sale;
+  },
 };
 
 module.exports = salesService;
