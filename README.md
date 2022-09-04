@@ -1,35 +1,14 @@
 <h1 align="center">Store Manager</h1>
 
 ## :memo: Descrição
-Escreva uma descrição do seu projeto
+Desenvolvimento de uma API utilizando a arquitetura MSC (model-service-controller)
 
 ## :books: Funcionalidades
-* <b>Funcionalidade 1</b>: O que essa funcionalidade faz?
+API é um gerenciamento de vendas em que será possível criar, visualizar, atualizar e deletar vendas.
 
 ## :wrench: Tecnologias utilizadas
-* Tecnologia;
+* Node Js <img alt="NODE.JS" height="42px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
+* mySQL <img alt="SQL" height="42px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" /> 
+* Express <img alt="EXPRESS" height ="42px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />
 
-## :rocket: Rodando o projeto
-Para rodar o repositório é necessário clonar o mesmo, dar o seguinte comando para iniciar o projeto:
-```
-<linha de comando>
-```
-
-## :soon: Implementação futura
-* O que será implementado na próxima sprint?
-
-## :handshake: Colaboradores
-<table>
-  <tr>
-    <td align="center">
-      <a href="http://github.com/tatialveso">
-        <img src="https://avatars.githubusercontent.com/u/56259137?v=4" width="100px;" alt="Foto de Tati Alves no GitHub"/><br>
-        <sub>
-          <b>tatialveso</b>
-        </sub>
-      </a>
-    </td>
-  </tr>
-</table>
-
-## :dart: Status do projeto
+## :dart: Status do projeto: COMPLETO
