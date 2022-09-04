@@ -38,7 +38,6 @@ const productModel = {
   async search(q) {
     const sql = `SELECT * FROM StoreManager.products WHERE name LIKE '${q}%'`;
     const [item] = await db.query(sql);
-    console.log(item);
     return item;
   },
 };
